@@ -1,5 +1,3 @@
-https://exercism.org/tracks/rust/exercises/armstrong-numbers
-
 인자로 받은 `u32` 정수의 각 자릿수를 그 정수의 자릿수 개수만큼 각각 거듭제곱한 뒤 모두 더했을 때 원래 숫자와 같은지 확인해야 합니다.
 
 우선 `u32` 공식 문서에서 `u32`를 n번 거듭 제곱한 수를 반환하는 함수를 제공하는지 확인합니다. -> [pow()](https://doc.rust-lang.org/std/primitive.u32.html#method.pow)

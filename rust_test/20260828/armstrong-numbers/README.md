@@ -1,3 +1,5 @@
+https://exercism.org/tracks/rust/exercises/armstrong-numbers
+
 # Armstrong Numbers
 
 Welcome to Armstrong Numbers on Exercism's Rust Track.
