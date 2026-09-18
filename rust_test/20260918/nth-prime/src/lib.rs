@@ -1,26 +1,25 @@
 pub fn nth(n: u32) -> u32 {
-    let mut count = 2;
-    let mut primes = Vec::<u32>::new();
+    let mut element = 2;
+    let mut count = 0;
+
     loop {
-        if is_prime(count) {
-            primes.push(count);
+        if is_prime(element) {
+            count += 1;
+            if count == n + 1 {
+                return element;
+            }
         }
 
-        if primes.len() == (n + 1) as usize {
-            return primes[n as usize];
-        } else {
-            count += 1;
-        }
+        element += 1;
     }
 }
 
 fn is_prime(n: u32) -> bool {
-    let mut divided_count = 0;
-    for i in 1..=(n / 2) {
+    for i in 2..n {
         if n % i == 0 {
-            divided_count += 1;
+            return false;
         }
     }
 
-    divided_count == 1
+    true
 }
