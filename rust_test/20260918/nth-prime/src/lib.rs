@@ -16,7 +16,7 @@ pub fn nth(n: u32) -> u32 {
 
 fn is_prime(n: u32) -> bool {
     for i in 2..n {
-        if n % i == 0 {
+        if n.is_multiple_of(i) {
             return false;
         }
     }
