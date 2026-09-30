@@ -8,3 +8,7 @@
 - as well as
 - compact
 - find oneself
+- in fact
+- turn into
+- whereas
+- not necessarily
