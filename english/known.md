@@ -4,3 +4,7 @@
 잘못 들어간 단어는 줄을 지우면 된다.
 
 - greater than or equal to
+- generalize
+- as well as
+- compact
+- find oneself
