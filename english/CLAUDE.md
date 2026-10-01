@@ -11,24 +11,23 @@
 | `grammar.md` | 문법·표현 패턴 |
 | `known.md` | 이미 아는 단어. 여기 있는 단어는 다시 후보로 뽑지 않는다 |
 | `weekly/` | 주간 작문·통계 기록 (`YYYY-Www.md`) |
+| `.claude/commands/` | 슬래시 명령어 정의 (`read.md`, `review.md`, `weekly.md`) |
 
 ## 명령어
 
-절차는 `commands/` 폴더의 파일에 있다. 사용자가 아래 명령을 입력하면 (앞의 `/`는 있어도 되고 없어도 된다) 해당 파일을 읽고 그 절차를 그대로 따른다. 파일 안의 `$ARGUMENTS`는 명령 뒤에 입력한 내용이다.
+`.claude/commands/`에 정의된 Claude Code 슬래시 명령어를 쓴다.
 
-| 입력 | 절차 파일 | 하는 일 |
+| 명령어 | 정의 파일 | 하는 일 |
 |---|---|---|
-| `read <URL 또는 본문>` | `commands/read.md` | 문장별 해석, 단어·문법 후보 추출 |
-| `review [개수]` | `commands/review.md` | 오늘 복습할 항목 출제·채점 |
-| `weekly [첨삭받을 문장]` | `commands/weekly.md` | 이번 주 단어로 영작, 주간 통계 |
+| `/read <URL 또는 본문>` | `.claude/commands/read.md` | 문장별 해석, 단어·문법 후보 추출 |
+| `/review [개수]` | `.claude/commands/review.md` | 오늘 복습할 항목 출제·채점 |
+| `/weekly [첨삭받을 문장]` | `.claude/commands/weekly.md` | 이번 주 단어로 영작, 주간 통계 |
 
-명령 없이 영어 본문이나 URL만 붙여넣어도 `read`와 똑같이 처리한다.
-
-`commands/` 폴더를 `.claude/commands/`로 복사하면 `/read`, `/review`, `/weekly`가 Claude Code 슬래시 명령어로도 등록된다.
+명령어 없이 영어 본문이나 URL만 붙여넣으면 `.claude/commands/read.md`를 읽고 `/read`와 똑같이 처리한다.
 
 ## 후보 선택 응답 처리
 
-`read`가 끝나면 사용자는 아래 형식으로 실제로 몰랐던 항목을 고른다.
+`/read`가 끝나면 사용자는 아래 형식으로 실제로 몰랐던 항목을 고른다.
 
 - `W 3,5,9 G 2`: 단어 W3, W5, W9와 문법 G2를 저장한다.
 - `W all`, `G all`: 해당 종류의 후보를 모두 저장한다.
