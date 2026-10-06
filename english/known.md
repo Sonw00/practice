@@ -14,3 +14,6 @@
 - not necessarily
 - vary
 - feature
+- satisfy
+- in other words
+- lead to
