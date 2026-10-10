@@ -17,3 +17,4 @@
 - satisfy
 - in other words
 - lead to
+- divisible
