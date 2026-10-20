@@ -53,3 +53,4 @@
 | predicate | n. (프로그래밍) 조건 함수, 참/거짓을 돌려주는 함수; (문법) 술어 | Searches for an element of an iterator that satisfies a *predicate*. | [Iterator::find (Rust std docs)](articles/2026-10-07-rust-iterator-find.md) | 2026-10-07 | 1 | 2026-10-08 | 0 |
 | short-circuit | v. 단락 평가하다 (결과가 정해지면 나머지 처리를 건너뛰다); 합선되다 | find() is *short-circuiting*; in other words, it will stop processing as soon as the closure returns true. | [Iterator::find (Rust std docs)](articles/2026-10-07-rust-iterator-find.md) | 2026-10-07 | 1 | 2026-10-08 | 0 |
 | corresponding | adj. (~에) 해당하는, 대응하는 | Your task is to convert a number into its *corresponding* raindrop sounds. | [Raindrops](articles/2026-10-10-raindrops-exercise.md) | 2026-10-10 | 1 | 2026-10-11 | 0 |
+| periodically purgeable | adj. phr. 주기적으로 삭제(정리)될 수 있는, 주기적으로 비워도 되는 | (예시) Files under /tmp are *periodically purgeable*, so don't store anything you need to keep there. | 직접 입력 | 2026-10-20 | 1 | 2026-10-21 | 0 |
