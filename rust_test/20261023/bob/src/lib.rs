@@ -2,7 +2,7 @@ pub fn reply(message: &str) -> &str {
     let is_question = message.trim().ends_with("?");
     let is_silence = message.trim().is_empty();
     let alphabet: Vec<char> = message.chars().filter(|c| c.is_ascii_alphabetic()).collect();
-    let is_yell = alphabet.len() != 0 && alphabet.iter().all(|c| c.is_uppercase());
+    let is_yell = !alphabet.is_empty() && alphabet.iter().all(|c| c.is_uppercase());
 
     if is_silence {
         return "Fine. Be that way!";
