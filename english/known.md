@@ -18,3 +18,13 @@
 - in other words
 - lead to
 - divisible
+- speak up
+- sonny
+- capital
+- yell back
+- believable
+- at random
+- over and over (again)
+- of all time
+- classic
+- era
