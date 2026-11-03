@@ -28,3 +28,10 @@
 - of all time
 - classic
 - era
+- bargain
+- vintage
+- stale
+- experimentation
+- mess up
+- rearrange
+- equivalent
