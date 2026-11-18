@@ -50,5 +50,17 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
             return Err(Error::InvalidDigit(num));
         }
     }
-    todo!("Convert {number:?} from base {from_base} to base {to_base}")
+
+    let digit_position = 1;
+    let digit_in_decimal: u32 = number.iter().map(|digit| digit * from_base.pow(digit_position - 1)).sum();
+    
+    let mut number_of_digit;
+    for i in 1.. {
+        if digit_in_decimal / to_base.pow(i) <= 0 {
+            number_of_digit = i;
+        }
+    }
+
+    let result = Vec::new();
+    Ok(result) // Placeholder, replace with actual conversion logic
 }
