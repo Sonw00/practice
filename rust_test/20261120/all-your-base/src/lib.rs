@@ -51,16 +51,25 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         }
     }
 
-    let digit_position = 1;
-    let digit_in_decimal: u32 = number.iter().map(|digit| digit * from_base.pow(digit_position - 1)).sum();
+    let mut digit_position = 0;
+    let digit_in_decimal: u32 = number.iter().rev().map(|digit| {
+        digit_position += 1;
+        return digit * from_base.pow(digit_position - 1)}).sum();
     
-    let mut number_of_digit;
-    for i in 1.. {
-        if digit_in_decimal / to_base.pow(i) <= 0 {
-            number_of_digit = i;
-        }
+    // let mut number_of_digit = 0;
+    // for i in 1.. {
+    //     if digit_in_decimal / to_base.pow(i) <= 0 {
+    //         number_of_digit = i + 1;
+    //         break;
+    //     }
+    // }
+
+    if digit_in_decimal == 0 {
+        return Ok(vec![0]);
     }
 
-    let result = Vec::new();
-    Ok(result) // Placeholder, replace with actual conversion logic
+    let number_of_digit = digit_in_decimal.ilog(to_base) + 1;
+
+    //let result = Vec::new();
+    Ok(vec![digit_in_decimal, number_of_digit]) // Placeholder, replace with actual conversion logic
 }
