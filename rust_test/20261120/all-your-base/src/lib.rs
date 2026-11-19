@@ -56,20 +56,17 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         digit_position += 1;
         return digit * from_base.pow(digit_position - 1)}).sum();
     
-    // let mut number_of_digit = 0;
-    // for i in 1.. {
-    //     if digit_in_decimal / to_base.pow(i) <= 0 {
-    //         number_of_digit = i + 1;
-    //         break;
-    //     }
-    // }
-
     if digit_in_decimal == 0 {
         return Ok(vec![0]);
     }
 
     let number_of_digit = digit_in_decimal.ilog(to_base) + 1;
+    let mut result = Vec::new();
+    
+    (1..=number_of_digit).rev().fold(digit_in_decimal, |remainder, position| {
+        result.push(remainder / to_base.pow(position - 1));
+        remainder % to_base.pow(position - 1)
+    });
 
-    //let result = Vec::new();
-    Ok(vec![digit_in_decimal, number_of_digit]) // Placeholder, replace with actual conversion logic
+    Ok(result) // Placeholder, replace with actual conversion logic
 }
