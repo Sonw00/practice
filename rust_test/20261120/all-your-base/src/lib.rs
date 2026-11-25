@@ -1,4 +1,3 @@
-
 #[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     InvalidInputBase,
@@ -6,67 +5,56 @@ pub enum Error {
     InvalidDigit(u32),
 }
 
-///
-/// Convert a number between two bases.
-///
-/// A number is any slice of digits.
-/// A digit is any unsigned integer (e.g. u8, u16, u32, u64, or usize).
-/// Bases are specified as unsigned integers.
-///
-/// Return the corresponding Error enum if the conversion is impossible.
-///
-///
-/// You are allowed to change the function signature as long as all test still pass.
-///
-///
-/// Example:
-/// Input
-///   number: &[4, 2]
-///   from_base: 10
-///   to_base: 2
-/// Result
-///   Ok(vec![1, 0, 1, 0, 1, 0])
-///
-/// The example corresponds to converting the number 42 from decimal
-/// which is equivalent to 101010 in binary.
-///
-///
-/// Notes:
-///  * The empty slice ( "[]" ) is equal to the number 0.
-///  * Never output leading 0 digits, unless the input number is 0, in which the output must be `[0]`.
-///    However, your function must be able to process input with leading 0 digits.
-///
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
-    if from_base <= 1 {
-        return Err(Error::InvalidInputBase);
+    match () {
+        _ if from_base < 2 => return Err(Error::InvalidInputBase),
+        _ if to_base < 2 => return Err(Error::InvalidOutputBase),
+        _ => {}
+    }
+    if let Some(&invalid_digit) = number.iter().find(|&&n| n >= from_base) {
+        return Err(Error::InvalidDigit(invalid_digit));
     }
 
-    if to_base <=1 {
-        return Err(Error::InvalidOutputBase);
-    }
-    
-    for &num in number {
-        if num >= from_base {
-            return Err(Error::InvalidDigit(num));
+    let normalized_num = number
+        .iter()
+        .copied()
+        .fold(0, |acc, next| acc * from_base + next);
+
+    Ok(BaseBuilder::build(normalized_num, to_base))
+}
+
+struct BaseBuilder {
+    base: u32,
+    remainder: u32,
+}
+
+impl Iterator for BaseBuilder {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.remainder == 0 {
+            return None;
         }
+        let n = self.remainder % self.base;
+        self.remainder /= self.base;
+        Some(n)
     }
+}
 
-    let mut digit_position = 0;
-    let digit_in_decimal: u32 = number.iter().rev().map(|digit| {
-        digit_position += 1;
-        return digit * from_base.pow(digit_position - 1)}).sum();
-    
-    if digit_in_decimal == 0 {
-        return Ok(vec![0]);
+impl BaseBuilder {
+    fn build(number: u32, base: u32) -> Vec<u32> {
+        if number == 0 {
+            return vec![0];
+        }
+        let mut res: Vec<_> = Self {
+            base,
+            remainder: number,
+        }
+        .collect::<Vec<_>>();
+
+        // convert to big endian for output
+        res.reverse();
+
+        res
     }
-
-    let number_of_digit = digit_in_decimal.ilog(to_base) + 1;
-    let mut result = Vec::new();
-    
-    (1..=number_of_digit).rev().fold(digit_in_decimal, |remainder, position| {
-        result.push(remainder / to_base.pow(position - 1));
-        remainder % to_base.pow(position - 1)
-    });
-
-    Ok(result) // Placeholder, replace with actual conversion logic
 }
